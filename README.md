@@ -42,7 +42,7 @@ Thai script includes 4 tone marks, which are to be input as :
 - ` for tone 1 (backtick)
 - `' for tone 2 (backtick followed by ')
 - `" for tone 3 (backtick followed by ")
-- + for tone 4
+- \+ for tone 4
 
 ## diacritics:
 We use 6 diacritics, namely ' " ï M - and :
