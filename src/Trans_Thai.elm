@@ -56,13 +56,13 @@ latThai_= Dict.fromList  [(")" , ")") -- ) is used for  ึ, so type _) to get )
 diacritics : List String
 diacritics = ["'", "\"","ï","M","-",":"]
 
-prevowels : List String
+prevowels : List String -- vowel signs to be rendered to the left of their consonant
 prevowels = ["เ", "แ", "โ", "ใ", "ไ"]
 
-pair1 : List String
+pair1 : List String -- first consonant in consonant cluster
 pair1 = ["ก", "ข", "ค", "ต", "ป", "ผ"]
 
-pair2 : List String
+pair2 : List String -- second consonant in consonant cluster
 pair2 = ["ร", "ล", "ว"]
 
 subst : String -> (Dict.Dict String String) -> String -- substitute one char (or char + diacritics) on the basis of dictionary
@@ -161,6 +161,6 @@ transl chaine =
     |> List.map String.toList -- => list of lists of chars
     |> List.foldr (++) [] -- flatten list: back to list of chars
     |> List.map String.fromChar -- => list of strings
-    |> folds [] --  permute prevowels with their consonant
-    |> List.reverse -- necessary after fold
+    |> folds [] --  permute prevowels with their consonant or pair of consonants
+    |> List.reverse -- necessary after folds
     |> List.foldr (++) "" -- back to String

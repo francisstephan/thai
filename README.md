@@ -28,26 +28,26 @@ There are several diphtongs in thai, but 2 of them get a special transcript, nam
 Thai consonants fall into 3 groups: middle, high and low
 - middle consonants have no diacritic mark: k, c, t, d ...
 - high consonants have a ' or " diacritic
-- low consonants have a - diacritic, possibly -' or -" if there are several variants of the same consonant
+- low consonants have a - diacritic, possibly -' or -" if there are several variants of the same low consonant
 
 ## vowels and consonants:
 Just as in bengali for instance, vowels may appear to the right, over, under, to the left or to both sides of the consonant after which they are pronounced. It bengali, this is totally taken into account by the unicode specification, meaning I had to make no special effort for rendering any vowel.
 
 So I was very negatively surprised to see that this was not the case for Thai: while putting vowels under or above their consonants was indeed taken care of, this is not the case for vowels to the left or to both sides of their consonant. For instance the vowel โ (pronounced o:) must be rendered to the left of consonant ก (pronounced k). But if you typed ko: in the initial version of the program, you would get กโ instead of โก which is the correct rendering (vowel โ to the left of consonant ก). This means that I had to programatically modify the result, so that if you type ko: you do get โก.
 
-I understand there still are some issues with unicode rendering for thai script (see for instance [https://www.w3.org/International/sealreq/thai/](https://www.w3.org/International/sealreq/thai/)). One of them is probably linked with the fact that in thai, unlike hindi or bengali, vowels may be linked not with one consonant but with a cluster of 2 consonants, such as  kro: which must be rendered โกร (o: + k + r). I tried to take that into account in the present program. This looks to work, except that in longer strings the rendering is no longer correct, possibly due to stack overflow (hard to diagnose). So maybe we have a case for returning to good old imperative model (i.e. without recursion) ?
+I understand there still are some issues with unicode rendering for thai script (see for instance [https://www.w3.org/International/sealreq/thai/](https://www.w3.org/International/sealreq/thai/)). One of them is probably linked with the fact that in thai, unlike hindi or bengali, vowels may be linked not with one consonant but with a cluster of 2 consonants, such as  kro: which must be rendered โกร (o: + k + r). I tried to take that into account in the present program. This looks to work, except that in longer strings the rendering is no longer correct, possibly due to stack overflow (hard to diagnose). So maybe we have a case for returning to good old imperative practice (i.e. without recursion) ?
 
 ## tone marks
 Thai script includes 4 tone marks, which are to be input as :
 - ` for tone 1 (backtick)
-- `' for tone 2 (backtick followed by ')
-- `" for tone 3 (backtick followed by ")
+- `' for tone 2 (backtick followed by single quote)
+- `" for tone 3 (backtick followed by double quote)
 - \+ for tone 4
 
 ## diacritics:
-We use 6 diacritics, namely ' " ï M - and :
+We use 6 diacritics, namely ' " ï M - :
 
-Diacritics are signs appended to vowels or consonants that change their value, as specified in the help tables.
+Diacritics are signs appended to vowels or consonants that change their value, as described here above and specified in the help tables.
 
 To use ' or " as quotation marks, insert a space before them.
 
@@ -60,9 +60,16 @@ We use _ as a prefix only in _) to get a regular ) since we use ) for open o
 Usual fonts available on my mac did not ensure proper rendering of tone marks. But Google's `noto serif thai` works very well for that issue, so I use this font for any thai text in the program.
 
 
-# Unrecognized characters
+## Unrecognized characters
 
 Any character not recognized is rendered unmodified.
+
+# Help tables
+Two help tables, indicating the correspondance between latin and thai characters, are given, in the form 'to get...' 'type ...'.
+
+One corresponds to consonants, the other one to vowels, numbers and tone marks.
+
+They are listed by unicode value, which corresponds with thai dictionary order (at least for consonants).
 
 
 # License
